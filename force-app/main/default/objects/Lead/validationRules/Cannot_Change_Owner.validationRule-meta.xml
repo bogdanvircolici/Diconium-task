@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_Owner</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISCHANGED(OwnerId), 
+OR(
+   AND(ISBLANK(Country), $Profile.Name &lt;&gt; &quot;System Administrator&quot;),
+   AND(ISBLANK(NumberOfEmployees), $Profile.Name &lt;&gt; &quot;System Administrator&quot;), 
+   AND(ISBLANK(NumberOfEmployees), $Profile.Name &lt;&gt; &quot;Contract Manager&quot;),
+   ISPICKVAL(LeadSource, &apos;&apos;)
+   )
+)</errorConditionFormula>
+    <errorMessage>Can not change owner yet! Complete the requirements.</errorMessage>
+</ValidationRule>
